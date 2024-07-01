@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/segmentio/kafka-go/protocol"
-	"github.com/segmentio/kafka-go/protocol/prototest"
-	"github.com/segmentio/kafka-go/protocol/rawproduce"
+	"github.com/Ducthinh2603/kafka-go/protocol"
+	"github.com/Ducthinh2603/kafka-go/protocol/prototest"
+	"github.com/Ducthinh2603/kafka-go/protocol/rawproduce"
 )
 
 const (

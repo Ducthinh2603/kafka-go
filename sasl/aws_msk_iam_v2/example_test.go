@@ -5,9 +5,9 @@ import (
 	"crypto/tls"
 	"time"
 
+	"github.com/Ducthinh2603/kafka-go"
+	"github.com/Ducthinh2603/kafka-go/sasl/aws_msk_iam_v2"
 	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/kafka-go/sasl/aws_msk_iam_v2"
 )
 
 func main() {

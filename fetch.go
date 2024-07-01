@@ -7,8 +7,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/segmentio/kafka-go/protocol"
-	fetchAPI "github.com/segmentio/kafka-go/protocol/fetch"
+	"github.com/Ducthinh2603/kafka-go/protocol"
+	fetchAPI "github.com/Ducthinh2603/kafka-go/protocol/fetch"
 )
 
 // FetchRequest represents a request sent to a kafka broker to retrieve records

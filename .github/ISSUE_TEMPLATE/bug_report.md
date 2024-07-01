@@ -36,7 +36,7 @@ assignees: ''
 package main
 
 import (
-    "github.com/segmentio/kafka-go"
+    "github.com/Ducthinh2603/kafka-go"
 )
 
 func main() {

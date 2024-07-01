@@ -3,7 +3,7 @@ package describeconfigs
 import (
 	"strconv"
 
-	"github.com/segmentio/kafka-go/protocol"
+	"github.com/Ducthinh2603/kafka-go/protocol"
 )
 
 const (
