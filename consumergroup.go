@@ -160,6 +160,11 @@ type ConsumerGroupConfig struct {
 	// Default: 5s
 	Timeout time.Duration
 
+	// for fixing linkerd problem mirroring service with additional suffix
+	// so we need to append suffix to the end of the host so that
+	// the dns resolver can find it
+	HostSuffix string
+
 	// connect is a function for dialing the coordinator.  This is provided for
 	// unit testing to mock broker connections.
 	connect func(dialer *Dialer, brokers ...string) (coordinator, error)
@@ -917,7 +922,13 @@ func (cg *ConsumerGroup) coordinator(suffixHosts ...string) (coordinator, error)
 	}
 	host := out.Coordinator.Host
 	if len(suffixHosts) > 0 {
-		host = fmt.Sprintf("%s%s", host, suffixHosts[0])
+		fmt.Println("out.Coordinator.Host=", host)
+		arr := strings.Split(host, ".")
+		if len(arr) >= 2 {
+			arr[0] = fmt.Sprintf("%s%s", arr[0], cg.config.HostSuffix)
+			host := strings.Join(arr[:2], ".")
+			fmt.Println("new-kafka-host=", host)
+		}
 	}
 	address := net.JoinHostPort(host, strconv.Itoa(int(out.Coordinator.Port)))
 	return cg.config.connect(cg.config.Dialer, address)

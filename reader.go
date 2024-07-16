@@ -522,6 +522,11 @@ type ReaderConfig struct {
 	// This flag is being added to retain backwards-compatibility, so it will be
 	// removed in a future version of kafka-go.
 	OffsetOutOfRangeError bool
+
+	// for fixing linkerd problem mirroring service with additional suffix
+	// so we need to append suffix to the end of the host so that
+	// the dns resolver can find it
+	HostSuffix string
 }
 
 // Validate method validates ReaderConfig properties.
@@ -737,6 +742,7 @@ func NewReader(config ReaderConfig) *Reader {
 			StartOffset:            r.config.StartOffset,
 			Logger:                 r.config.Logger,
 			ErrorLogger:            r.config.ErrorLogger,
+			HostSuffix:             r.config.HostSuffix,
 		})
 		if err != nil {
 			panic(err)
