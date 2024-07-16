@@ -134,6 +134,15 @@ func (d *Dialer) DialLeader(ctx context.Context, network string, address string,
 	if err != nil {
 		return nil, err
 	}
+	remoteAddr := net.JoinHostPort(p.Leader.Host, strconv.Itoa(p.Leader.Port))
+	fmt.Println("leader kafka return", remoteAddr)
+	arr := strings.Split(p.Leader.Host, ".")
+	if len(arr) >= 2 {
+		arr[0] = fmt.Sprintf("%s-dc3", arr[0])
+		host := strings.Join(arr[:2], ".")
+		p.Leader.Host = host
+		fmt.Println("new kafka host", host)
+	}
 	return d.DialPartition(ctx, network, address, p)
 }
 
