@@ -926,7 +926,7 @@ func (cg *ConsumerGroup) coordinator(suffixHosts ...string) (coordinator, error)
 		arr := strings.Split(host, ".")
 		if len(arr) >= 2 {
 			arr[0] = fmt.Sprintf("%s%s", arr[0], cg.config.HostSuffix)
-			host := strings.Join(arr[:2], ".")
+			host = strings.Join(arr[:2], ".")
 			fmt.Println("new-kafka-host=", host)
 		}
 	}
